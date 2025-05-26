@@ -1,4 +1,8 @@
-<?php require_once "templates/header.php" ?>
+<?php
+require_once "templates/header.php";
+require_once "libs/pdo.php";
+
+?>
 
 <section class="text-gray-400 bg-gray-900 body-font">
     <form action="" method="post" class="container px-5 py-24 mx-auto flex flex-wrap items-center">
