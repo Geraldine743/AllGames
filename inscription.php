@@ -22,13 +22,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 
 <section class="text-gray-400 bg-gray-900 body-font">
-    <?php if (isset($errors["form"])): ?>
-        <div class="text-red-400">
-            <?= $errors["form"] ?>
-        </div>
-    <?php endif; ?>
     <form action="" method="post" class="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div class="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0">
+            <?php if (isset($errors["form"])): ?>
+                <div class="text-red-400">
+                    <?= $errors["form"] ?>
+                </div>
+            <?php endif; ?>
             <h2 class="text-white text-lg font-medium title-font mb-5">Inscription</h2>
             <div class="relative mb-4">
                 <label for="username" class="leading-7 text-sm text-gray-400">Pseudo</label>

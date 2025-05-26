@@ -1,11 +1,31 @@
-<?php require_once "templates/header.php";
+<?php
+require_once "templates/header.php";
+require_once "libs/pdo.php";
+require_once "libs/user.php";
+
+
+$errors = [];
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["email"]) && isset($_POST["password"])) {
+    $user = verifyUserLoginPassword($pdo, $_POST["email"], $_POST["password"]);
+    if ($user) {
+        header("Location:index.php");
+    } else {
+        $errors["form"] = "email ou mot de passe incorrect";
+    }
+}
 
 
 ?>
 
 <section class="text-gray-400 bg-gray-900 body-font">
+
     <form action="" method="post" class="container px-5 py-24 mx-auto flex flex-wrap items-center">
         <div class="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:m-auto w-full mt-10 md:mt-0">
+            <?php if (isset($errors["form"])): ?>
+                <div class="text-red-400">
+                    <?= $errors["form"] ?>
+                </div>
+            <?php endif; ?>
             <h2 class="text-white text-lg font-medium title-font mb-5">Connexion</h2>
             <div class="relative mb-4">
                 <label for="email" class="leading-7 text-sm text-gray-400">Email</label>
