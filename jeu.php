@@ -2,13 +2,15 @@
 require_once "templates/header.php";
 require_once "libs/game.php";
 
+$id = (int)$_GET["id"];
+$game = getGame($id);
 
 ?>
 
 <section class="text-gray-400 bg-gray-900 body-font">
 
     <div class="container px-5 pt-10 mx-auto flex flex-wrap">
-        <h1 class="title-font font-medium text-3xl mb-2 text-white">Nom du jeu</h1>
+        <h1 class="title-font font-medium text-3xl mb-2 text-white"><?= $game["name"] ?></h1>
     </div>
     <div class="container px-5 py-4 mx-auto flex flex-wrap">
         <div class="lg:w-2/3 sm:w-2/3 w-full overflow-hidden mt-6 mr-6 sm:mt-0">
@@ -17,7 +19,7 @@ require_once "libs/game.php";
         <div class="flex flex-wrap -mx-4 lg:w-1/3 sm:w-1/3 content-start sm:pr-10">
             <div class="w-full px-4 mb-35">
                 <img class="object-cover object-center w-full h-full mb-5" src="https://dummyimage.com/450x200" alt="stats">
-                <div class="leading-relaxed">description du jeu</div>
+                <div class="leading-relaxed"><?= $game["description"] ?></div>
             </div>
             <div class="p-4 sm:w-1/2 lg:w-1/3 w-1/2">
                 <h2 class="title-font font-medium text-sm text-white">Très positives</h2>

@@ -15,7 +15,7 @@ $games = getAllGames();
         </div>
         <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
 
-            <?php foreach ($games as $game): ?>
+            <?php foreach ($games as $index => $game): ?>
                 <?php require "templates/_game_item.php" ?>
             <?php endforeach; ?>
 
