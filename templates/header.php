@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <title>AllGames</title>
 </head>
 
@@ -15,6 +16,7 @@
                 <img src="assets/images/logo-all-games.svg" width="120" alt="logo allgames">
             </a>
             <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
+                <a href="index.php" class="mr-5 hover:text-white">Accueil</a>
                 <a href="jeux.php" class="mr-5 hover:text-white">Liste des jeux</a>
                 <a class="mr-5 hover:text-white">Ma liste</a>
             </nav>

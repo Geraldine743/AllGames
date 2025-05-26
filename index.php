@@ -15,7 +15,7 @@ $games = getAllGames();
             </h1>
             <p class="mb-8 leading-relaxed">AllGames est la plateforme idéale pour ajouter vos jeux favoris et découvrir de nouveaux jeux. Découvrez les derniers jeux ajoutés.</p>
             <div class="flex justify-center">
-                <button class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Voir tous les jeux</button>
+                <a href="jeux.php" class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Voir tous les jeux</a>
             </div>
         </div>
         <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
