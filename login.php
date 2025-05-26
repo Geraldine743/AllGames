@@ -1,13 +1,22 @@
 <?php
+require_once "libs/session.php";
 require_once "templates/header.php";
 require_once "libs/pdo.php";
 require_once "libs/user.php";
 
+if (isLoggedIn()) {
+    header("Location:index.php");
+}
 
 $errors = [];
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["email"]) && isset($_POST["password"])) {
     $user = verifyUserLoginPassword($pdo, $_POST["email"], $_POST["password"]);
     if ($user) {
+        session_regenerate_id(true);
+        $_SESSION["user"] = [
+            "id" => $user["id"],
+            "username" => $user["username"],
+        ];
         header("Location:index.php");
     } else {
         $errors["form"] = "email ou mot de passe incorrect";
