@@ -17,8 +17,14 @@ function getAllGames(PDO $pdo, ?int $limit = null): array
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//function getGame(int $id): array
-//{
-    //$games = getAllGames();
-    //return $games[$id];
-//}
+function getGame(PDO $pdo, int $id): array|bool
+{
+    $sql = "SELECT g.id, g.name, g.description, g.release_date, e.name AS editor_name
+            FROM game g
+            LEFT JOIN editor e ON e.id = g.editor_id
+            WHERE g.id = :id";
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
+    $query->execute();
+    return $query->fetch(PDO::FETCH_ASSOC);
+}
