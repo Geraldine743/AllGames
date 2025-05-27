@@ -33,3 +33,17 @@ function getWishlistItemByGameIdAndUserId(PDO $pdo, int $gameId, int $userId): a
 
     return $query->fetch(PDO::FETCH_ASSOC);
 }
+
+function getWishlistItemsByUserId(PDO $pdo, int $userId): array
+{
+    $sql = "SELECT g.id, g.name, g.description, g.release_date
+    FROM wishlist w
+    LEFT JOIN game g ON g.id = w.game_id
+    WHERE w.user_id = :userId";
+
+    $query = $pdo->prepare($sql);
+    $query->bindValue(":userId", $userId, PDO::PARAM_INT);
+    $query->execute();
+
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
