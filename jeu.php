@@ -6,6 +6,7 @@ require_once "libs/game.php";
 require_once "templates/header.php";
 
 $error404 = false;
+$wishlistItem = false;
 if (isset($_GET["id"])) {
     $id = (int)$_GET["id"];
     $game = getGame($pdo, $id);
@@ -15,6 +16,10 @@ if (isset($_GET["id"])) {
         if (isset($_GET["addToWishlist"]) && isLoggedIn()) {
             $user = getConnectedUser();
             addToWishlist($pdo, $id, (int)$user["id"]);
+        }
+        if (isLoggedIn()) {
+            $user = getConnectedUser();
+            $wishlitItem = getWishlistItemByGameIdAndUserId($pdo, $id, (int)$user["id"]);
         }
     }
 } else {
@@ -71,12 +76,18 @@ if (isset($_GET["id"])) {
         <div class="container px-5 pt-10 mx-auto flex flex-wrap">
             <div class="leading-relaxed mb-10"><?= $game["description"] ?></div>
             <?php if (isLoggedIn()): ?>
-                <a href="jeu.php?id=<?= $id ?>&addToWishlist" class="inline-flex text-white bg-blue-500 border-0 py-2 px-3 focus:outline-none hover:bg-blue-600 rounded text-lg">
-                    <svg class="mr-1.5 -ml-0.5 size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
-                    </svg>
-                    Ajouter à la liste
-                </a>
+                <?php if ($wishlitItem): ?>
+                    <a href="jeu.php?id=<?= $id ?>" class="inline-flex items-center text-white bg-blue-500 border-0 py-2 px-3 focus:outline-none hover:bg-blue-600 rounded text-lg">
+                        <svg class="mr-1.5 -ml-0.5 size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" />
+                        </svg>
+                        Déjà dans votre liste
+                    </a>
+                <?php else: ?>
+                    <a href="jeu.php?id=<?= $id ?>&addToWishlist" class="inline-flex items-center text-white bg-blue-500 border-0 py-2 px-3 focus:outline-none hover:bg-blue-600 rounded text-lg">
+                        Ajouter à la liste
+                    </a>
+                <?php endif; ?>
             <?php else: ?>
                 <div class="leading-relaxed mb-10">Veuillez vous <a class="text-white underline" href="login.php">connecter</a> pour ajouter ce jeu à votre liste de souhait</div>
             <?php endif; ?>
