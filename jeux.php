@@ -1,8 +1,10 @@
 <?php
+require_once "libs/session.php";
 require_once "templates/header.php";
 require_once "libs/game.php";
+require_once "libs/pdo.php";
 
-$games = getAllGames();
+$games = getAllGames($pdo);
 
 ?>
 
