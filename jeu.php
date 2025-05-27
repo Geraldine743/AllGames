@@ -18,13 +18,17 @@ if (isset($_GET["id"])) {
 
 ?>
 
-<?php if ($error404): ?>
-    <div class="text-red-400">
-        Jeu introuvable
-    </div>
-<?php else: ?>
 
-    <section class="text-gray-400 bg-gray-900 body-font">
+
+<section class="text-gray-400 bg-gray-900 body-font h-svh">
+    <?php if ($error404): ?>
+        <div class="flex justify-center">
+            <div class="text-red-400 text-4xl">
+                Jeu introuvable
+            </div>
+        </div>
+
+    <?php else: ?>
 
         <div class="container px-5 pt-10 mx-auto flex flex-wrap">
             <h1 class="title-font font-medium text-3xl mb-2 text-white"><?= $game["name"] ?></h1>
@@ -67,9 +71,9 @@ if (isset($_GET["id"])) {
                 Ajouter à la liste
             </a>
         </div>
+    <?php endif; ?>
+</section>
 
-    </section>
 
-<?php endif; ?>
 
 <?php require_once "templates/footer.php" ?>
